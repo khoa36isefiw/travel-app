@@ -42,7 +42,17 @@ export default function Layout() {
         name="search"
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="search" size={28} color={color} />
+            <View
+              style={{
+                backgroundColor: Colors.primaryColor,
+                paddingHorizontal: 16,
+                paddingVertical: 12,
+                borderRadius: 12,
+                height: 50,
+              }}
+            >
+              <MaterialIcons name="search" size={28} color={Colors.white} />
+            </View>
           ),
         }}
       />
