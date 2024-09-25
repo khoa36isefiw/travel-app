@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { Stack } from "expo-router";
@@ -12,6 +13,10 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import { useHeaderHeight } from "@react-navigation/elements";
 import CategoryButton from "@/components/CategoryButton";
+import Listing from "@/components/Listing";
+import listingData from "@/data/destinations.json";
+import groupData from "@/data/gorups.json";
+import GroupListing from "@/components/GroupListing";
 
 const HomePage = () => {
   const headerHeight = useHeaderHeight(); // height of the screen
@@ -61,24 +66,28 @@ const HomePage = () => {
           ),
         }}
       />
-      <View style={[styles.container, { paddingTop: headerHeight }]}>
-        <Text style={styles.headingText}>Explore the beautiful world!</Text>
-        <View style={styles.searchSectionWrapper}>
-          <View style={styles.searchBar}>
-            <Ionicons
-              name="search"
-              size={24}
-              color={Colors.black}
-              style={{ marginRight: 5 }}
-            />
-            <TextInput placeholder="Search..." />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[styles.container, { paddingTop: headerHeight }]}>
+          <Text style={styles.headingText}>Explore the beautiful world!</Text>
+          <View style={styles.searchSectionWrapper}>
+            <View style={styles.searchBar}>
+              <Ionicons
+                name="search"
+                size={24}
+                color={Colors.black}
+                style={{ marginRight: 5 }}
+              />
+              <TextInput placeholder="Search..." />
+            </View>
+            <TouchableOpacity style={styles.filterButton}>
+              <Ionicons name="options" size={28} color={Colors.white} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.filterButton}>
-            <Ionicons name="options" size={28} color={Colors.white} />
-          </TouchableOpacity>
+          <CategoryButton onCategoryChange={onCatChanged} />
+          <Listing listings={listingData} category={category} />
+          <GroupListing listings={groupData} />
         </View>
-        <CategoryButton onCategoryChange={onCatChanged} />
-      </View>
+      </ScrollView>
     </>
   );
 };
