@@ -66,28 +66,29 @@ const HomePage = () => {
           ),
         }}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={[styles.container, { paddingTop: headerHeight }]}>
-          <Text style={styles.headingText}>Explore the beautiful world!</Text>
-          <View style={styles.searchSectionWrapper}>
-            <View style={styles.searchBar}>
-              <Ionicons
-                name="search"
-                size={24}
-                color={Colors.black}
-                style={{ marginRight: 5 }}
-              />
-              <TextInput placeholder="Search..." />
-            </View>
-            <TouchableOpacity style={styles.filterButton}>
-              <Ionicons name="options" size={28} color={Colors.white} />
-            </TouchableOpacity>
+
+      <View style={[styles.container, { paddingTop: headerHeight }]}>
+        <Text style={styles.headingText}>Explore the beautiful world!</Text>
+        <View style={styles.searchSectionWrapper}>
+          <View style={styles.searchBar}>
+            <Ionicons
+              name="search"
+              size={24}
+              color={Colors.black}
+              style={{ marginRight: 5 }}
+            />
+            <TextInput placeholder="Search..." />
           </View>
+          <TouchableOpacity style={styles.filterButton}>
+            <Ionicons name="options" size={28} color={Colors.white} />
+          </TouchableOpacity>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <CategoryButton onCategoryChange={onCatChanged} />
           <Listing listings={listingData} category={category} />
           <GroupListing listings={groupData} />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </>
   );
 };
